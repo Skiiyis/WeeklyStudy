@@ -1,0 +1,7 @@
+include ':multi_modules_plugin'
+include ':i_user'
+include ':center'
+include ':shop'
+include ':user'
+include ':app'
+rootProject.name = "My Application"
