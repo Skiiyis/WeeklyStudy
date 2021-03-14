@@ -15,7 +15,7 @@ class MultiModulesPlugin : Plugin<Project> {
         )
         appExtension.registerTransform(
             MultiModulesCodeGenTransform(project),
-            listOf(KV_NAME)
+            Collections.EMPTY_LIST
         )
         project.afterEvaluate {
             Log.info("after", "have some log")

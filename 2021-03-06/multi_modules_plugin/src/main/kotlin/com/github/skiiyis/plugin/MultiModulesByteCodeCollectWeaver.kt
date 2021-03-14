@@ -20,34 +20,39 @@ class MultiModulesByteCodeCollectWeaver : BaseWeaver() {
     class MultiModulesByteCodeVisitor(classWriter: ClassWriter) :
         ClassVisitor(Opcodes.ASM5, classWriter) {
 
+        private lateinit var `implement`: String
+
         override fun visit(
             version: Int,
             access: Int,
-            name: String?,
+            name: String,
             signature: String?,
             superName: String?,
             interfaces: Array<out String>?
         ) {
-            MultiModulesAnnotationMap.`implement` = name
+            `implement` = name
             super.visit(version, access, name, signature, superName, interfaces)
         }
 
         override fun visitAnnotation(desc: String, visible: Boolean): AnnotationVisitor {
             val vs = super.visitAnnotation(desc, visible)
             return if (desc == "Lcom/skiiyis/center/PluginImpl;")
-                MultiModulesByteCodeAnnotationVisitor(vs)
+                MultiModulesByteCodeAnnotationVisitor(`implement`, vs)
             else
                 vs
         }
     }
 
     // Class
-    class MultiModulesByteCodeAnnotationVisitor(av: AnnotationVisitor) :
+    class MultiModulesByteCodeAnnotationVisitor(
+        private val `implement`: String,
+        av: AnnotationVisitor
+    ) :
         AnnotationVisitor(Opcodes.ASM5, av) {
 
         // -> 筛选PluginImpl的 value 内容
         override fun visit(name: String?, value: Any?) {
-            MultiModulesAnnotationMap.`interface` = value.toString()
+            MultiModulesAnnotationMap.cache[value.toString()] = `implement`
             super.visit(name, value)
         }
     }

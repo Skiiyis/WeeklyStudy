@@ -12,9 +12,9 @@ public class PluginManager {
         return ((T) c);
     }
 
-    /*static {
-        cache.put(Plugin.class, new PluginManager());
+    static {
+        // cache.put(Plugin.class, new PluginManager());
         // cache.put(IUserPlugin.class,new UserPlugin())
         // cache.put(IShopPlugin.class,new ShopPlugin())
-    }*/
+    }
 }

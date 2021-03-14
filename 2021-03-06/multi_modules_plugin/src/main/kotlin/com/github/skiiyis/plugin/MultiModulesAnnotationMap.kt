@@ -6,7 +6,7 @@ object MultiModulesAnnotationMap {
     var `interface`: String? = null
         set(value) {
             `implement`?.also {
-                cache[it] = value!!
+                cache[value!!] = it
             }
             `implement` = null
             field = null
