@@ -1,0 +1,4 @@
+ext {
+    //zhan 电脑下载不了 30.0.3 版本，此处改为 30.0.2
+    buildToolsVersion = "30.0.2"
+}
