@@ -1,0 +1,36 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+    id 'maven-publish'
+    id 'kotlin-kapt'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "com.squareup:javapoet:1.13.0"
+    implementation 'com.google.auto.service:auto-service:1.0-rc6'
+    kapt 'com.google.auto.service:auto-service:1.0-rc6'
+}
+
+repositories {
+    mavenLocal()
+    google()
+    jcenter()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId "com.github.skiiyis"
+            artifactId "activity-args-processor"
+            version "0.1.0-SNAPSHOT"
+
+            from components.java
+        }
+    }
+}

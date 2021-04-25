@@ -7,10 +7,5 @@ class SecondActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
-        MainActivityLauncher
-            .create(this)
-            .requireParams(id = "id")
-            .optionalParams()
-            .launch()
     }
 }

@@ -1,2 +1,3 @@
+include ':libprocessor'
 include ':app'
 rootProject.name = "StudyKAPT"
