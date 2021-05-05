@@ -1,6 +1,7 @@
 package com.skiiyis.studykapt
 
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.skiiyis.libprocessor.Args
 
@@ -18,7 +19,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // MainActivityParser.parse(this)
+        MainActivityParser.parse(this)
         setContentView(R.layout.activity_main)
+        findViewById<TextView>(R.id.content).text = "title:$title\nname:$name\nid:$id"
     }
 }

@@ -6,20 +6,35 @@ import com.squareup.javapoet.JavaFile
 import com.squareup.javapoet.MethodSpec
 import com.squareup.javapoet.TypeSpec
 import javax.annotation.processing.AbstractProcessor
+import javax.annotation.processing.Processor
 import javax.annotation.processing.RoundEnvironment
+import javax.lang.model.SourceVersion
 import javax.lang.model.element.Modifier
 import javax.lang.model.element.TypeElement
 import javax.lang.model.element.VariableElement
 
-@AutoService(Process::class)
-class ArgsProcessor : AbstractProcessor() {
+@AutoService(Processor::class)
+open class ArgsProcessor : AbstractProcessor() {
     // fullname > args
     private val buildMap = HashMap<TypeElement, ArgsCodeBuilder>()
+
+    override fun getSupportedAnnotationTypes(): MutableSet<String> {
+        return mutableSetOf(Args::class.java.name).also {
+            println("SupportedAnnotationTypes: $it")
+        }
+    }
+
+    override fun getSupportedSourceVersion(): SourceVersion {
+        return SourceVersion.latestSupported().also {
+            println("getSupportedSourceVersion: $it")
+        }
+    }
 
     override fun process(
         annotations: MutableSet<out TypeElement>,
         roundEnv: RoundEnvironment
     ): Boolean {
+        if (annotations.isNullOrEmpty()) return true
         for (element in roundEnv.getElementsAnnotatedWith(Args::class.java)) {
             if (element !is VariableElement) {
                 continue
@@ -47,26 +62,23 @@ class ArgsProcessor : AbstractProcessor() {
         return genCode()
     }
 
-    private fun genLauncherClassFile(it: Map.Entry<TypeElement, ArgsCodeBuilder>) {
+    private fun genLauncherClassFile(it: Map.Entry<TypeElement, ArgsCodeBuilder>): TypeSpec.Builder {
         // key: MainActivity -> MainActivityArgs
-        val launcherClassSimpleName = "${it.key.qualifiedName}Launcher"
-        val launcherOptionalParamClassSimpleName = "${it.key.qualifiedName}Launcher_Optional"
-        val launcherJfo =
-            processingEnv.filer.createSourceFile(launcherClassSimpleName, it.key)
-        // todo
-        val packageName = it.key.qualifiedName.split(".").dropLast(1).joinToString(".")
+        val launcherClassSimpleName = "${it.key.simpleName}Launcher"
+        val launcherOptionalParamClassSimpleName = "${it.key.simpleName}Launcher_Optional"
+        val packageName = it.key.enclosingElement.toString()
 
         val launcherClassName = ClassName.get(packageName, launcherClassSimpleName)
         val activityClassName = ClassName.get("android.app", "Activity")
         val launcherOptionalParamClassName =
-            ClassName.get(packageName, launcherOptionalParamClassSimpleName)
+            ClassName.get("", launcherOptionalParamClassSimpleName)
 
         val requireContextMethod = MethodSpec.methodBuilder("requireContext")
             .addModifiers(Modifier.PRIVATE, Modifier.FINAL)
             .addParameter(activityClassName, "activity")
             .returns(launcherClassName)
-            .addStatement("this.activity = activity;")
-            .addStatement("return this;")
+            .addStatement("this.activity = activity")
+            .addStatement("return this")
             .build()
 
         val requireParamsMethod = MethodSpec.methodBuilder("requireParams")
@@ -78,7 +90,7 @@ class ArgsProcessor : AbstractProcessor() {
             }
             .returns(launcherOptionalParamClassName)
             .addStatement("return new \$T(activity, ${it.value.requiredParams.map { it.variableName }
-                .joinToString(",")});", launcherOptionalParamClassName)
+                .joinToString(",")})", launcherOptionalParamClassName)
             .build()
 
         val constructorMethod = MethodSpec.constructorBuilder()
@@ -89,49 +101,38 @@ class ArgsProcessor : AbstractProcessor() {
             .addModifiers(Modifier.PUBLIC, Modifier.FINAL, Modifier.STATIC)
             .addParameter(activityClassName, "activity")
             .returns(launcherClassName)
-            .addStatement("return new \$T().requireContext(activity);", launcherClassName)
+            .addStatement("return new \$T().requireContext(activity)", launcherClassName)
             .build()
 
-        val launcherTypeSpec = TypeSpec.classBuilder(launcherClassSimpleName)
+        return TypeSpec.classBuilder(launcherClassSimpleName)
             .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
             .addField(activityClassName, "activity", Modifier.PRIVATE)
             .addMethod(constructorMethod)
             .addMethod(staticCreateMethod)
             .addMethod(requireParamsMethod)
             .addMethod(requireContextMethod)
-            .build()
-
-        val javaFile = JavaFile.builder(packageName, launcherTypeSpec)
-            .build()
-
-        javaFile.writeTo(launcherJfo.openWriter())
     }
 
-    private fun genLauncherOptionalClassFile(it: Map.Entry<TypeElement, ArgsCodeBuilder>) {
+    private fun genLauncherOptionalClassFile(it: Map.Entry<TypeElement, ArgsCodeBuilder>): TypeSpec.Builder {
         // key: MainActivity -> MainActivityArgs
-        val launcherClassSimpleName = "${it.key.qualifiedName}Launcher"
-        val launcherOptionalParamClassSimpleName = "${it.key.qualifiedName}Launcher_Optional"
-        val launcherJfo =
-            processingEnv.filer.createSourceFile(launcherClassSimpleName, it.key)
-        val packageName = it.key.qualifiedName.split(".").dropLast(1).joinToString(".")
+        val launcherOptionalParamClassSimpleName = "${it.key.simpleName}Launcher_Optional"
+        val packageName = it.key.enclosingElement.toString()
 
-        val launcherClassName = ClassName.get(packageName, launcherClassSimpleName)
         val activityClassName = ClassName.get("android.app", "Activity")
         val launcherOptionalParamClassName =
-            ClassName.get(packageName, launcherOptionalParamClassSimpleName)
+            ClassName.get("", launcherOptionalParamClassSimpleName)
 
         val constructorMethod = MethodSpec.constructorBuilder()
-            .addModifiers(Modifier.DEFAULT)
             .addParameter(activityClassName, "activity")
             .apply {
                 it.value.requiredParams.forEach {
                     addParameter(ClassName.bestGuess(it.variableFullClassName), it.variableName)
                 }
             }
-            .addStatement("this.activity = activity;")
+            .addStatement("this.activity = activity")
             .apply {
                 it.value.requiredParams.forEach {
-                    addStatement("this.${it.variableName} = ${it.variableName};")
+                    addStatement("this.${it.variableName} = ${it.variableName}")
                 }
             }
             .build()
@@ -141,87 +142,82 @@ class ArgsProcessor : AbstractProcessor() {
                 .addModifiers(Modifier.PUBLIC)
                 .addParameter(ClassName.bestGuess(it.variableFullClassName), it.variableName)
                 .returns(launcherOptionalParamClassName)
-                .addStatement("this.${it.variableName} = ${it.variableName};")
-                .addStatement("return this;")
+                .addStatement("this.${it.variableName} = ${it.variableName}")
+                .addStatement("return this")
                 .build()
         }
 
         val launchMethod = MethodSpec.methodBuilder("launch")
             .addModifiers(Modifier.PUBLIC)
-            .returns(Void::class.java)
-            .addStatement("android.content.Intent intent = new android.content.Intent(activity, ${it.key.qualifiedName}.class);")
+            .addStatement("android.content.Intent intent = new android.content.Intent(activity, ${it.key.qualifiedName}.class)")
             .apply {
                 it.value.requiredParams.forEach {
-                    addStatement("intent.putExtra(\"${it.variableName}\", ${it.variableName});")
+                    addStatement("intent.putExtra(\"${it.variableName}\", ${it.variableName})")
                 }
                 it.value.optionalParams.forEach {
-                    addStatement("intent.putExtra(\"${it.variableName}\", ${it.variableName});")
+                    addStatement("intent.putExtra(\"${it.variableName}\", ${it.variableName})")
                 }
             }
-            .addStatement("activity.startActivity(intent);")
+            .addStatement("activity.startActivity(intent)")
             .build()
 
-        val launcherTypeSpec = TypeSpec.classBuilder(launcherOptionalParamClassSimpleName)
-            .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
-            .addField(activityClassName, "activity")
+        return TypeSpec.classBuilder(launcherOptionalParamClassSimpleName)
+            .addModifiers(Modifier.PUBLIC, Modifier.FINAL, Modifier.STATIC)
+            .addField(activityClassName, "activity", Modifier.PRIVATE)
             .apply {
                 it.value.requiredParams.forEach {
-                    addField(ClassName.bestGuess(it.variableFullClassName), it.variableName)
+                    addField(
+                        ClassName.bestGuess(it.variableFullClassName),
+                        it.variableName,
+                        Modifier.PRIVATE
+                    )
                 }
                 it.value.optionalParams.forEach {
-                    addField(ClassName.bestGuess(it.variableFullClassName), it.variableName)
+                    addField(
+                        ClassName.bestGuess(it.variableFullClassName),
+                        it.variableName,
+                        Modifier.PRIVATE
+                    )
                 }
             }
             .addMethods(optionalMethods)
             .addMethod(launchMethod)
             .addMethod(constructorMethod)
-            .build()
-
-        val javaFile = JavaFile.builder(packageName, launcherTypeSpec)
-            .build()
-
-        javaFile.writeTo(launcherJfo.openWriter())
     }
 
-    private fun genParserClassFile(it: Map.Entry<TypeElement, ArgsCodeBuilder>) {
+    private fun genParserClassFile(it: Map.Entry<TypeElement, ArgsCodeBuilder>): TypeSpec.Builder {
         // key: MainActivity -> MainActivityArgs
-        val parserClassSimpleName = "${it.key.qualifiedName}Parser"
-        val launcherJfo =
-            processingEnv.filer.createSourceFile(parserClassSimpleName, it.key)
-        val packageName = it.key.qualifiedName.split(".").dropLast(1).joinToString(".")
+        val parserClassSimpleName = "${it.key.simpleName}Parser"
 
         val parseMethod = MethodSpec.methodBuilder("parse")
             .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
             .addParameter(ClassName.bestGuess(it.key.qualifiedName.toString()), "activity")
-            .returns(Void::class.java)
-            .addStatement("android.content.Intent intent = activity.getIntent();")
+            .addStatement("android.content.Intent intent = activity.getIntent()")
             .apply {
                 it.value.requiredParams.forEach {
-                    addStatement("activity.${it.variableName} = (${it.variableFullClassName}) intent.getExtras().get(\"${it.variableName}\");")
+                    addStatement("activity.${it.variableName} = (${it.variableFullClassName}) intent.getExtras().get(\"${it.variableName}\")")
                 }
                 it.value.optionalParams.forEach {
-                    addStatement("activity.${it.variableName} = (${it.variableFullClassName}) intent.getExtras().get(\"${it.variableName}\");")
+                    addStatement("activity.${it.variableName} = (${it.variableFullClassName}) intent.getExtras().get(\"${it.variableName}\")")
                 }
             }
             .build()
 
-        val launcherTypeSpec = TypeSpec.classBuilder(parserClassSimpleName)
+        return TypeSpec.classBuilder(parserClassSimpleName)
             .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
             .addMethod(parseMethod)
-            .build()
-
-        val javaFile = JavaFile.builder(packageName, launcherTypeSpec)
-            .build()
-
-        javaFile.writeTo(launcherJfo.openWriter())
     }
 
     private fun genCode(): Boolean {
         if (buildMap.isEmpty()) return false
         buildMap.forEach {
-            genLauncherClassFile(it)
-            genLauncherOptionalClassFile(it)
-            genParserClassFile(it)
+            val packageName = it.key.enclosingElement.toString()
+            val launcherTypeSpec = genLauncherClassFile(it).addType(
+                genLauncherOptionalClassFile(it).build()
+            ).build()
+            val parserTypeSpec = genParserClassFile(it).build()
+            JavaFile.builder(packageName, launcherTypeSpec).build().writeTo(processingEnv.filer)
+            JavaFile.builder(packageName, parserTypeSpec).build().writeTo(processingEnv.filer)
         }
         return true
     }
