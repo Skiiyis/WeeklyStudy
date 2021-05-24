@@ -3,23 +3,26 @@ package com.skiiyis.studykapt
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.skiiyis.libprocessor.Args
+import com.skiiyis.libprocessor.AutoInject
+import com.skiiyis.libprocessor.Optional
+import com.skiiyis.libprocessor.Required
 
+@AutoInject
 class MainActivity : AppCompatActivity() {
 
-    @Args(required = true)
+    @Required
     lateinit var id: String
 
-    @Args(required = true)
+    @Required
     lateinit var name: String
 
-    @Args(required = false)
+    @Optional
     @JvmField
     var title: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        MainActivityParser.parse(this)
+        MainActivityParser.inject(this)
         setContentView(R.layout.activity_main)
         findViewById<TextView>(R.id.content).text = "title:$title\nname:$name\nid:$id"
     }

@@ -9,10 +9,10 @@ class SecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
         findViewById<View>(R.id.clickMe).setOnClickListener {
-            MainActivityLauncher.create(this)
-                .requireParams("this is id", "I'm name")
+            MainActivityLauncher.builder("this is id", "I'm name")
+                .requestCode(10)
                 .title("This is title")
-                .launch()
+                .start(this)
         }
     }
 }
