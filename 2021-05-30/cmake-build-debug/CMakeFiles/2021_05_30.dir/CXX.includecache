@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/admin/Documents/WeeklyStudy/2021-05-30/mmap_util.cpp
+fcntl.h
+-
+mmap_util.h
+/Users/admin/Documents/WeeklyStudy/2021-05-30/mmap_util.h
+sys/mman.h
+-
+sys/stat.h
+-
+zconf.h
+-
+stdexcept
+-
+
+/Users/admin/Documents/WeeklyStudy/2021-05-30/mmap_util.h
+string
+-
+
