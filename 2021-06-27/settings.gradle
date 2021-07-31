@@ -1,2 +1,4 @@
+include ':hotfixporxy'
+include ':HotFixInject'
 include ':app'
 rootProject.name = "HotFix"
