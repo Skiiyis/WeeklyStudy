@@ -6,6 +6,7 @@ class ColdLaunchScene : LaunchScene {
 
     override fun execute(task: LaunchTask) {
         // TODO 校验循环依赖
+        // TODO beDepended 链下的 task 需要 process、taskType、scene 场景一致？好像没必要，但如何处理 findTaskTrigger 问题
         if (task.dependOn().none { taskStatus[task] != "DONE" }) {
             // 没有依赖的情况下执行task本身
             findTaskTrigger(task).execute {
