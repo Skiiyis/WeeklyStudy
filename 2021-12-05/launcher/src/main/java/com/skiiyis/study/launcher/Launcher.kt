@@ -1,39 +1,33 @@
 package com.skiiyis.study.launcher
 
-import android.app.Application
-import android.os.Looper
+class Launcher private constructor() {
 
-class Launcher private constructor(val ctx: Application) {
-    private val tasks = mutableListOf<LaunchTask>()
+    private val taskTriggers = HashMap<String, LaunchTaskTrigger>()
+    private val launchScenes = HashMap<String, LaunchScene>()
 
     companion object {
-        fun getInstance(ctx: Application): Launcher {
-            return Launcher(ctx)
-        }
+        val instance by lazy { Launcher() }
+    }
+
+    fun registerTaskTrigger(taskType: String, trigger: LaunchTaskTrigger) {
+        taskTriggers[taskType] = trigger
+    }
+
+    fun getTaskTrigger(taskType: String): LaunchTaskTrigger? {
+        return taskTriggers[taskType]
     }
 
     fun addTask(task: LaunchTask) {
-        checkUiThread()
-        if (task.dependOn().isNotEmpty()) return
-        tasks.add(task)
+        val launchScene = getLaunchScene(task.name())
+        checkNotNull(launchScene)
+        launchScene.addTask(task)
     }
 
-    fun execute() {
-        //FIXME curProcessName
-        //1、筛选当前进程下 task；2、匹配 scene 执行任
-        tasks.filter { task -> task.targetProcess().filter { it == "curProcessName" }.isNotEmpty() }
-            .forEach {
-                getLaunchScene(it.scene()).execute(it)
-            }
+    fun registerLaunchScene(sceneName: String, launchScene: LaunchScene) {
+        launchScenes[sceneName] = launchScene
     }
 
-    fun getLaunchScene(sceneName: String): LaunchScene {
-
-    }
-
-    private fun checkUiThread() {
-        if (Thread.currentThread() != Looper.getMainLooper().thread) {
-            throw IllegalStateException("addTask 需要在主线程执行")
-        }
+    fun getLaunchScene(sceneName: String): LaunchScene? {
+        return launchScenes[sceneName]
     }
 }
