@@ -10,12 +10,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="859461f1-7eca-4ca7-9830-78c35028fe58" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/ColdLaunchScene.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/LaunchScene.kt" beforeDir="false" afterPath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/LaunchScene.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/LauncherHooks.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/util/TaskDependencyChecker.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/skiiyis/studylauncher/MyApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/skiiyis/studylauncher/MyApplication.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/skiiyis/studylauncher/SecondLaunchTask.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/skiiyis/studylauncher/SecondLaunchTask.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/skiiyis/studylauncher/ThirdLaunchTask.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/skiiyis/studylauncher/ThirdLaunchTask.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/BackgroundTaskTrigger.kt" beforeDir="false" afterPath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/impl/BackgroundTaskTrigger.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/DefaultLaunchScene.kt" beforeDir="false" afterPath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/impl/LaunchScene.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/LaunchAt.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/LaunchScene.kt" beforeDir="false" afterPath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/ILaunchScene.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/LaunchTask.kt" beforeDir="false" afterPath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/LaunchTask.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/LaunchTaskTrigger.kt" beforeDir="false" afterPath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/LaunchTaskTrigger.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/LaunchTaskTrigger.kt" beforeDir="false" afterPath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/ILaunchTaskTrigger.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/Launcher.kt" beforeDir="false" afterPath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/Launcher.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/MainThreadTaskTrigger.kt" beforeDir="false" afterPath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/impl/MainThreadTaskTrigger.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +77,9 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.skiiyis.study.launcher.impl" />
+    </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
       <recent name="com.skiiyis.studylauncher" />
     </key>

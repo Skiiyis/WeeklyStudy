@@ -1,10 +1,11 @@
 package com.skiiyis.studylauncher
 
 import android.app.Application
-import com.skiiyis.study.launcher.BackgroundTaskTrigger
-import com.skiiyis.study.launcher.DefaultLaunchScene
+import com.skiiyis.study.launcher.impl.BackgroundTaskTrigger
+import com.skiiyis.study.launcher.impl.LaunchScene
 import com.skiiyis.study.launcher.LaunchTask
 import com.skiiyis.study.launcher.Launcher
+import com.skiiyis.study.launcher.LauncherHooks
 
 class MyApplication : Application() {
 
@@ -12,7 +13,7 @@ class MyApplication : Application() {
         super.onCreate()
         Launcher.instance.also {
             it.registerTaskTrigger("taskType", BackgroundTaskTrigger())
-            it.registerLaunchScene("cold", DefaultLaunchScene(it))
+            it.registerLaunchScene("cold", LaunchScene(it))
         }
 
         // 插件生成代码

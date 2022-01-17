@@ -1,9 +1,10 @@
-package com.skiiyis.study.launcher
+package com.skiiyis.study.launcher.impl
 
+import com.skiiyis.study.launcher.ILaunchTaskTrigger
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
-class BackgroundTaskTrigger : LaunchTaskTrigger {
+class BackgroundTaskTrigger : ILaunchTaskTrigger {
 
     private val executor: Executor by lazy {
         Executors.newCachedThreadPool()

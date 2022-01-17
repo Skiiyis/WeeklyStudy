@@ -2,22 +2,23 @@ package com.skiiyis.study.launcher
 
 abstract class LaunchTask : Runnable {
 
-    protected var beDepended: LaunchTask? = null
+    private var beDependedList: MutableList<LaunchTask>? = null
 
     abstract fun name(): String
     abstract fun taskType(): String
     abstract fun targetProcess(): List<String>
     abstract fun scene(): String
-    abstract fun dependOn(): List<LaunchTask>
+    abstract fun dependOn(): List<LaunchTask>?
 
-    fun beDepended(): LaunchTask? {
-        return beDepended
+    fun beDepended(): List<LaunchTask>? {
+        return beDependedList
     }
 
     open fun order(): Int {
         return Int.MIN_VALUE
     }
-
+    // A <- B
+    // C <- B
 
     class Builder(val runnable: Runnable) {
         private var name: String? = null
@@ -80,7 +81,9 @@ abstract class LaunchTask : Runnable {
                 }
 
                 override fun run() {
+                    LauncherHooks.beforeTaskRunHook?.invoke(this)
                     runnable.run()
+                    LauncherHooks.afterTaskRunHook?.invoke(this)
                 }
 
                 override fun dependOn(): List<LaunchTask> {
@@ -91,8 +94,15 @@ abstract class LaunchTask : Runnable {
                     return order
                 }
             }
+            // A.dependOnTasks.constants(B,C,D)
+            // B.beDependedList.constants(A)
+            // C.beDependedList.constants(A)
+            // D.beDependedList.constants(A)
             dependOnTasks.forEach {
-                it.beDepended = ret
+                if (it.beDependedList == null) {
+                    it.beDependedList = mutableListOf()
+                }
+                it.beDependedList?.add(it)
             }
             return ret
         }

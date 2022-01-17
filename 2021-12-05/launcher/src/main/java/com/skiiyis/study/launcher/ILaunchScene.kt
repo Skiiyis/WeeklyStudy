@@ -1,6 +1,6 @@
 package com.skiiyis.study.launcher
 
-interface LaunchScene {
+interface ILaunchScene {
     fun addTask(task: LaunchTask)
     fun execute()
 }
