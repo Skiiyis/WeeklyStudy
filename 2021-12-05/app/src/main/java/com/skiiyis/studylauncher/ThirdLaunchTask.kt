@@ -1,7 +1,9 @@
 package com.skiiyis.studylauncher
 
-class ThirdLaunchTask : Runnable {
+import android.util.Log
+
+class ThirdLaunchTask(val content: String) : Runnable {
     override fun run() {
-        println("I'm a third task")
+        Log.e("LaunchTask", "I'm a ${content} task")
     }
 }

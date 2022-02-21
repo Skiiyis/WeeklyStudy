@@ -6,20 +6,17 @@ object TaskDependencyChecker {
 
     // 查找是否有循环依赖，层序遍历
     private fun check(
-        tasks: Set<LaunchTask>,
-        pathTasks: MutableSet<LaunchTask>
+        task: LaunchTask,
+        pathTask: MutableSet<LaunchTask>,
+        totalTasks: MutableSet<LaunchTask>
     ) {
-        if (pathTasks.intersect(tasks).isNotEmpty()) {
-            throw IllegalArgumentException("Find ring in task dependencies")
+        if (pathTask.contains(task)) throw IllegalArgumentException("Find ring in task dependencies")
+        totalTasks.add(task)
+        task.dependOn()?.forEach {
+            pathTask.add(task)
+            check(it, pathTask, totalTasks)
+            pathTask.remove(task)
         }
-        tasks.forEach {
-            pathTasks.add(it)
-        }
-        val nextDepthTasks = mutableSetOf<LaunchTask>()
-        tasks.forEach {
-            nextDepthTasks.addAll(it.dependOn() ?: emptyList())
-        }
-        check(nextDepthTasks, pathTasks)
     }
 
     // 检查是否有循环依赖且按入度输出
@@ -28,12 +25,11 @@ object TaskDependencyChecker {
         val totalTasks = mutableSetOf<LaunchTask>()
         tasks.forEach {
             val pathTasks = mutableSetOf<LaunchTask>()
-            check(setOf(it), pathTasks)
-            totalTasks.addAll(pathTasks)
+            check(it, pathTasks, totalTasks)
         }
         // 根据依赖找入度
         while (ret.size != totalTasks.size) {
-            totalTasks.forEach {
+            totalTasks.subtract(ret.keys).forEach {
                 if (ret[it] == null) {
                     val dependOnTasks = it.dependOn()
                     if (dependOnTasks.isNullOrEmpty()) {

@@ -3,7 +3,8 @@ package com.skiiyis.study.launcher
 class Launcher private constructor() {
 
     private val taskTriggers = HashMap<String, ILaunchTaskTrigger>()
-    private val launchScenes = HashMap<String, ILaunchScene>()
+    private val tasks = mutableSetOf<LaunchTask>()
+    private val launchSceneGenerators = HashMap<String, () -> ILaunchScene>()
 
     companion object {
         val instance by lazy { Launcher() }
@@ -19,18 +20,17 @@ class Launcher private constructor() {
     }
 
     fun addTask(task: LaunchTask) {
-        val t = LauncherHooks.addTaskHook?.invoke(task) ?: task
-        val launchScene = getLaunchScene(t.name())
-        checkNotNull(launchScene)
-        launchScene.addTask(task)
+        tasks.add(task)
     }
 
-    fun registerLaunchScene(sceneName: String, launchScene: ILaunchScene) {
-        val l = LauncherHooks.registerLaunchSceneHook?.invoke(sceneName, launchScene) ?: launchScene
-        launchScenes[sceneName] = l
+    fun registerLaunchScene(sceneName: String, launchSceneGenerator: () -> ILaunchScene) {
+        launchSceneGenerators[sceneName] = launchSceneGenerator
     }
 
-    fun getLaunchScene(sceneName: String): ILaunchScene? {
-        return launchScenes[sceneName]
+    fun generateLaunchScene(sceneName: String): ILaunchScene? {
+        val scene = launchSceneGenerators[sceneName]?.invoke() ?: return null
+        return (LauncherHooks.generateLaunchSceneHook?.invoke(sceneName, scene) ?: scene).also {scene->
+            tasks.filter { it.scene() == sceneName }.forEach { scene.addTask(it) }
+        }
     }
 }

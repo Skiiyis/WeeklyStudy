@@ -94,15 +94,11 @@ abstract class LaunchTask : Runnable {
                     return order
                 }
             }
-            // A.dependOnTasks.constants(B,C,D)
-            // B.beDependedList.constants(A)
-            // C.beDependedList.constants(A)
-            // D.beDependedList.constants(A)
             dependOnTasks.forEach {
                 if (it.beDependedList == null) {
                     it.beDependedList = mutableListOf()
                 }
-                it.beDependedList?.add(it)
+                it.beDependedList?.add(ret)
             }
             return ret
         }

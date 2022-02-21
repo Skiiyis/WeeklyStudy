@@ -1,7 +1,9 @@
 package com.skiiyis.studylauncher
 
+import android.util.Log
+
 class SecondLaunchTask : Runnable {
     override fun run() {
-        println("I'm a launch task")
+        Log.e("LaunchTask","I'm a launch task")
     }
 }
