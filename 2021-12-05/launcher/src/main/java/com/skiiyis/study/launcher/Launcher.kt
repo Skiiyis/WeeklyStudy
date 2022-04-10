@@ -4,7 +4,7 @@ class Launcher private constructor() {
 
     private val taskTriggers = HashMap<String, ILaunchTaskTrigger>()
     private val tasks = mutableSetOf<LaunchTask>()
-    private val launchSceneGenerators = HashMap<String, () -> ILaunchScene>()
+    private val launchTransactionGenerators = HashMap<String, () -> ILaunchTransaction>()
 
     companion object {
         val instance by lazy { Launcher() }
@@ -23,14 +23,15 @@ class Launcher private constructor() {
         tasks.add(task)
     }
 
-    fun registerLaunchScene(sceneName: String, launchSceneGenerator: () -> ILaunchScene) {
-        launchSceneGenerators[sceneName] = launchSceneGenerator
+    fun registerLaunchTransactionGenerator(transactionName: String, launchTransactionGenerator: () -> ILaunchTransaction) {
+        launchTransactionGenerators[transactionName] = launchTransactionGenerator
     }
 
-    fun generateLaunchScene(sceneName: String): ILaunchScene? {
-        val scene = launchSceneGenerators[sceneName]?.invoke() ?: return null
-        return (LauncherHooks.generateLaunchSceneHook?.invoke(sceneName, scene) ?: scene).also {scene->
-            tasks.filter { it.scene() == sceneName }.forEach { scene.addTask(it) }
+    fun beginTransaction(transactionName: String): ILaunchTransaction? {
+        val transaction = launchTransactionGenerators[transactionName]?.invoke() ?: return null
+        return (LauncherHooks.generateLaunchTransactionHook?.invoke(transactionName, transaction) ?: transaction).also { t->
+            tasks.filter { it.transactionName() == transactionName }
+                .forEach { t.addTask(it) }
         }
     }
 }

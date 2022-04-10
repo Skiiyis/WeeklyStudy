@@ -14,19 +14,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="859461f1-7eca-4ca7-9830-78c35028fe58" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/skiiyis/studylauncher/MainActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/StudyLauncher.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/StudyLauncher.app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/launcher/StudyLauncher.launcher.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/launcher/StudyLauncher.launcher.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/skiiyis/studylauncher/MyApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/skiiyis/studylauncher/MyApplication.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/skiiyis/studylauncher/SecondLaunchTask.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/skiiyis/studylauncher/SecondLaunchTask.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/skiiyis/studylauncher/ThirdLaunchTask.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/skiiyis/studylauncher/ThirdLaunchTask.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/LaunchTask.kt" beforeDir="false" afterPath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/LaunchTask.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/ILaunchScene.kt" beforeDir="false" afterPath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/ILaunchTransition.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/Launcher.kt" beforeDir="false" afterPath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/Launcher.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/impl/LaunchScene.kt" beforeDir="false" afterPath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/impl/LaunchScene.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/LauncherHooks.kt" beforeDir="false" afterPath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/LauncherHooks.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/impl/LaunchScene.kt" beforeDir="false" afterPath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/impl/LaunchTransition.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +54,7 @@
       <list>
         <option value="Kotlin File" />
         <option value="Kotlin Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -186,8 +180,8 @@
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/impl/LaunchScene.kt</url>
-          <line>32</line>
+          <url>file://$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/impl/LaunchTransition.kt</url>
+          <line>33</line>
           <properties>
             <option name="lambda-ordinal" value="-1" />
           </properties>

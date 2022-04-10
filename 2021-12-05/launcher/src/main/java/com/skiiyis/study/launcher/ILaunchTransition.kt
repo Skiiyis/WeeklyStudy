@@ -1,6 +1,6 @@
 package com.skiiyis.study.launcher
 
-interface ILaunchScene {
+interface ILaunchTransaction {
     fun addTask(task: LaunchTask)
-    fun execute()
+    fun commit()
 }

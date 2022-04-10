@@ -1,13 +1,13 @@
 package com.skiiyis.study.launcher.impl
 
-import com.skiiyis.study.launcher.ILaunchScene
+import com.skiiyis.study.launcher.ILaunchTransaction
 import com.skiiyis.study.launcher.LaunchTask
 import com.skiiyis.study.launcher.Launcher
 import com.skiiyis.study.launcher.util.TaskDependencyChecker
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-open class LaunchScene(private val launcher: Launcher) : ILaunchScene {
+open class LaunchTransaction(private val launcher: Launcher) : ILaunchTransaction {
 
     companion object {
         const val STATUS_WAIT = 0
@@ -21,35 +21,34 @@ open class LaunchScene(private val launcher: Launcher) : ILaunchScene {
 
     override fun addTask(task: LaunchTask) {
         if (isExecuting) {
-            throw IllegalAccessException("Scene already executing, could not add tasks")
+            throw IllegalAccessException("Transaction already executing, could not add tasks")
         }
-//        if (launcher.generateLaunchScene(task.scene()) != this) {
-//            throw IllegalAccessException("Task scene not match!")
-//        }
         tasks.add(task)
     }
 
     private fun executeTasks(taskWithStatus: MutableMap<LaunchTask, Int>) {
-        taskWithStatus.filter {
-            it.value == STATUS_WAIT
-        }.keys.sortedBy { it.order() }.forEach {
-            taskWithStatus[it] = STATUS_EXECUTING
-            launcher.getTaskTrigger(it.taskType())!!.execute {
-                it.run()
-                executor.execute {
-                    taskWithStatus[it] = STATUS_DONE
-                    it.beDepended()?.forEach {
-                        if (it.dependOn()!!.all { taskWithStatus[it] == STATUS_DONE }) {
-                            taskWithStatus[it] = STATUS_WAIT
+        executor.execute {
+            taskWithStatus.filter {
+                it.value == STATUS_WAIT
+            }.keys.sortedBy { it.order() }.forEach {
+                taskWithStatus[it] = STATUS_EXECUTING
+                launcher.getTaskTrigger(it.taskType())!!.execute {
+                    it.run()
+                    executor.execute {
+                        taskWithStatus[it] = STATUS_DONE
+                        it.beDepended()?.forEach {
+                            if (it.dependOn()!!.all { taskWithStatus[it] == STATUS_DONE }) {
+                                taskWithStatus[it] = STATUS_WAIT
+                            }
                         }
+                        executeTasks(taskWithStatus)
                     }
-                    executeTasks(taskWithStatus)
                 }
             }
         }
     }
 
-    override fun execute() {
+    override fun commit() {
         if (isExecuting) return
         isExecuting = true
         executor.execute {

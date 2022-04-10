@@ -1,10 +1,10 @@
 package com.skiiyis.studylauncher
 
 import android.app.Application
-import com.skiiyis.study.launcher.impl.BackgroundTaskTrigger
-import com.skiiyis.study.launcher.impl.LaunchScene
 import com.skiiyis.study.launcher.LaunchTask
 import com.skiiyis.study.launcher.Launcher
+import com.skiiyis.study.launcher.impl.BackgroundTaskTrigger
+import com.skiiyis.study.launcher.impl.LaunchTransaction
 
 class MyApplication : Application() {
 
@@ -12,12 +12,12 @@ class MyApplication : Application() {
         super.onCreate()
         Launcher.instance.also {
             it.registerTaskTrigger("background", BackgroundTaskTrigger())
-            it.registerLaunchScene("cold") { LaunchScene(it) }
+            it.registerLaunchTransactionGenerator("cold") { LaunchTransaction(it) }
         }
 
         // 插件生成代码
         val aidlTask = LaunchTask.Builder(ThirdLaunchTask("aidl"))
-            .scene("cold")
+            .transactionName("cold")
             .name("aidl")
             .targetProcess(listOf("main"))
             .taskType("background")
@@ -25,7 +25,7 @@ class MyApplication : Application() {
             .build()
 
         val compileTask = LaunchTask.Builder(ThirdLaunchTask("compile"))
-            .scene("cold")
+            .transactionName("cold")
             .name("compile")
             .targetProcess(listOf("main"))
             .taskType("background")
@@ -33,7 +33,7 @@ class MyApplication : Application() {
             .build()
 
         val libTask = LaunchTask.Builder(ThirdLaunchTask("lib"))
-            .scene("cold")
+            .transactionName("cold")
             .name("lib")
             .targetProcess(listOf("main"))
             .taskType("background")
@@ -41,7 +41,7 @@ class MyApplication : Application() {
             .build()
 
         val buildTask = LaunchTask.Builder(ThirdLaunchTask("build"))
-            .scene("cold")
+            .transactionName("cold")
             .name("build")
             .targetProcess(listOf("main"))
             .taskType("background")
@@ -51,7 +51,7 @@ class MyApplication : Application() {
             .build()
 
         val resourceTask = LaunchTask.Builder(ThirdLaunchTask("resource"))
-            .scene("cold")
+            .transactionName("cold")
             .name("resource")
             .targetProcess(listOf("main"))
             .taskType("background")
@@ -61,7 +61,7 @@ class MyApplication : Application() {
             .build()
 
         val assembleTask = LaunchTask.Builder(SecondLaunchTask())
-            .scene("cold")
+            .transactionName("cold")
             .name("assemble")
             .targetProcess(listOf("main"))
             .taskType("background")
@@ -74,10 +74,10 @@ class MyApplication : Application() {
 //        Launcher.instance.addTask(secondTask)
 //        Launcher.instance.addTask(thirdTask)
 
-        Launcher.instance.generateLaunchScene("cold")?.also {
+        Launcher.instance.beginTransaction("cold")?.also {
             it.addTask(assembleTask)
             it.addTask(buildTask)
-            it.execute()
+            it.commit()
         }
     }
 }

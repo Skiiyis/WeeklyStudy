@@ -7,7 +7,7 @@ abstract class LaunchTask : Runnable {
     abstract fun name(): String
     abstract fun taskType(): String
     abstract fun targetProcess(): List<String>
-    abstract fun scene(): String
+    abstract fun transactionName(): String
     abstract fun dependOn(): List<LaunchTask>?
 
     fun beDepended(): List<LaunchTask>? {
@@ -24,7 +24,7 @@ abstract class LaunchTask : Runnable {
         private var name: String? = null
         private var taskType: String? = null
         private var process: List<String>? = null
-        private var scene: String? = null
+        private var transactionName: String? = null
         private var order: Int = Int.MIN_VALUE
         private val dependOnTasks = mutableListOf<LaunchTask>()
 
@@ -43,8 +43,8 @@ abstract class LaunchTask : Runnable {
             return this
         }
 
-        fun scene(scene: String): Builder {
-            this.scene = scene
+        fun transactionName(name: String): Builder {
+            this.transactionName = name
             return this
         }
 
@@ -62,7 +62,7 @@ abstract class LaunchTask : Runnable {
             checkNotNull(name)
             checkNotNull(taskType)
             checkNotNull(process)
-            checkNotNull(scene)
+            checkNotNull(transactionName)
             val ret = object : LaunchTask() {
                 override fun name(): String {
                     return name!!
@@ -76,8 +76,8 @@ abstract class LaunchTask : Runnable {
                     return process!!
                 }
 
-                override fun scene(): String {
-                    return scene!!
+                override fun transactionName(): String {
+                    return transactionName!!
                 }
 
                 override fun run() {
