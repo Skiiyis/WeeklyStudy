@@ -4,7 +4,7 @@ import com.skiiyis.study.launcher.ILaunchTaskTrigger
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
-class BackgroundTaskTrigger : ILaunchTaskTrigger {
+open class BackgroundTaskTrigger : ILaunchTaskTrigger {
 
     private val executor: Executor by lazy {
         Executors.newCachedThreadPool()

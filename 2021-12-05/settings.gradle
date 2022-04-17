@@ -2,3 +2,4 @@ include ':libprocessor'
 include ':app'
 rootProject.name = "StudyLauncher"
 include ':launcher'
+include ':launcher-plugin'
