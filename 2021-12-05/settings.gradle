@@ -3,3 +3,4 @@ include ':app'
 rootProject.name = "StudyLauncher"
 include ':launcher'
 include ':launcher-plugin'
+include ':launcher-annotation'
