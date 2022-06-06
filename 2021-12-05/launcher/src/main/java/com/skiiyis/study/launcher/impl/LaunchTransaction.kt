@@ -7,7 +7,7 @@ import com.skiiyis.study.launcher.util.TaskDependencyChecker
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-open class LaunchTransaction(private val launcher: Launcher) : ILaunchTransaction {
+open class LaunchTransaction : ILaunchTransaction {
 
     companion object {
         const val STATUS_WAIT = 0
@@ -32,7 +32,7 @@ open class LaunchTransaction(private val launcher: Launcher) : ILaunchTransactio
                 it.value == STATUS_WAIT
             }.keys.sortedBy { it.order() }.forEach {
                 taskWithStatus[it] = STATUS_EXECUTING
-                launcher.getTaskTrigger(it.taskType())!!.execute {
+                Launcher.getTaskTrigger(it.taskType())!!.execute {
                     it.run()
                     executor.execute {
                         taskWithStatus[it] = STATUS_DONE
@@ -54,7 +54,7 @@ open class LaunchTransaction(private val launcher: Launcher) : ILaunchTransactio
         executor.execute {
             val taskWithStatus = TaskDependencyChecker.checkAndMergeTasks(tasks)
             taskWithStatus.keys.map { it.taskType() }.forEach {
-                launcher.getTaskTrigger(it)
+                Launcher.getTaskTrigger(it)
                     ?: throw IllegalArgumentException("Not found match trigger")
             }
             executeTasks(taskWithStatus)

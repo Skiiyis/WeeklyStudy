@@ -27,7 +27,7 @@ class LauncherAnnotationCollectWeaver : BaseWeaver() {
         cr.accept(cn, 0)
 
         // ----
-        cn.invisibleAnnotations.forEach {
+        cn.visibleAnnotations?.forEach {
             when (it.desc) {
                 LaunchTaskDesc -> {
                     LaunchTaskAnnotationProcessor.collect(cn.name, it.values)

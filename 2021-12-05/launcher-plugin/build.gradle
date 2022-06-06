@@ -2,7 +2,8 @@ apply plugin: 'maven-publish'
 apply plugin: 'kotlin'
 
 dependencies {
-    implementation project(':launcher-annotation')
+    implementation 'com.skiiyis.study.launcher.plugin:launcher-annotation:0.1.0-SNAPSHOT'
+    implementation 'com.skiiyis.study.launcher:launcher:0.1.0-SNAPSHOT'
     implementation gradleApi()
     implementation localGroovy()
     implementation 'com.android.tools.build:gradle:3.4.0'

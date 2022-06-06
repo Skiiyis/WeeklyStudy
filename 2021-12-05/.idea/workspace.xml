@@ -14,39 +14,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="859461f1-7eca-4ca7-9830-78c35028fe58" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/launcher-annotation/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/launcher-annotation/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/launcher-annotation/proguard-rules.pro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/launcher-annotation/src/androidTest/java/androidx/fragment/launcher_annotation/ExampleInstrumentedTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/launcher-annotation/src/main/java/com/skiiyis/study/launcher/annotation/LauncherInitPlugin.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/launcher-annotation/src/test/java/androidx/fragment/launcher_annotation/ExampleUnitTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/plugin/LauncherPlugin.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/plugin/annotationprocessor/AnnotationProcessor.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/plugin/annotationprocessor/LaunchTaskAnnotationProcessor.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/plugin/annotationprocessor/LaunchTaskTriggerAnnotationProcessor.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/plugin/annotationprocessor/LaunchTransactionAnnotationProcessor.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/plugin/collect/LauncherAnnotationCollectTransform.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/plugin/collect/LauncherAnnotationCollectWeaver.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/launcher-plugin/src/main/resources/META-INF/gradle-plugins/launcher-plugin.properites" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/2021-12-05.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/plugin/Constants.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/app/StudyLauncher.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/StudyLauncher.app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/launcher/StudyLauncher.launcher.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/launcher/StudyLauncher.launcher.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/skiiyis/studylauncher/ColdLaunchTransaction.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/skiiyis/studylauncher/ColdLaunchTransaction.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/skiiyis/studylauncher/MyApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/skiiyis/studylauncher/MyApplication.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher-annotation/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/launcher-annotation/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher-annotation/src/main/java/com/skiiyis/study/launcher/annotation/ALaunchTask.kt" beforeDir="false" afterPath="$PROJECT_DIR$/launcher-annotation/src/main/java/com/skiiyis/study/launcher/annotation/ALaunchTask.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher-annotation/src/main/java/com/skiiyis/study/launcher/annotation/ALaunchTaskTrigger.kt" beforeDir="false" afterPath="$PROJECT_DIR$/launcher-annotation/src/main/java/com/skiiyis/study/launcher/annotation/ALaunchTaskTrigger.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher-annotation/src/main/java/com/skiiyis/study/launcher/annotation/ALaunchTransaction.kt" beforeDir="false" afterPath="$PROJECT_DIR$/launcher-annotation/src/main/java/com/skiiyis/study/launcher/annotation/ALaunchTransaction.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher-annotation/src/main/java/com/skiiyis/study/launcher/annotation/LauncherInitPlugin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/launcher-annotation/src/main/java/com/skiiyis/study/launcher/annotation/LauncherInitPlugin.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/launcher-plugin/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/launcher-plugin/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/LauncherInitPlugin.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/annotation/ALaunchTask.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/annotation/ALaunchTaskTrigger.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/annotation/ALaunchTransaction.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/plugin/LauncherPlugin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/plugin/LauncherPlugin.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/plugin/annotationprocessor/AnnotationProcessor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/plugin/annotationprocessor/AnnotationProcessor.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/plugin/annotationprocessor/LaunchTaskAnnotationProcessor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/plugin/annotationprocessor/LaunchTaskAnnotationProcessor.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/plugin/annotationprocessor/LaunchTaskTriggerAnnotationProcessor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/plugin/annotationprocessor/LaunchTaskTriggerAnnotationProcessor.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/plugin/annotationprocessor/LaunchTransactionAnnotationProcessor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/plugin/annotationprocessor/LaunchTransactionAnnotationProcessor.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/plugin/codegen/LauncherInitCodeGenWeaver.kt" beforeDir="false" afterPath="$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/plugin/codegen/LauncherInitCodeGenWeaver.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/plugin/collect/LauncherAnnotationCollectWeaver.kt" beforeDir="false" afterPath="$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/plugin/collect/LauncherAnnotationCollectWeaver.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher-plugin/src/main/resources/META-INF/gradle-plugins/launcher-plugin.properites" beforeDir="false" afterPath="$PROJECT_DIR$/launcher-plugin/src/main/resources/META-INF/gradle-plugins/launcher-plugin.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/launcher/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher/src/androidTest/java/com/skiiyis/study/launcher/ExampleInstrumentedTest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher/src/main/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/LaunchTask.kt" beforeDir="false" afterPath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/LaunchTask.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/Launcher.kt" beforeDir="false" afterPath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/Launcher.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/impl/LaunchTransaction.kt" beforeDir="false" afterPath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/impl/LaunchTransaction.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher/src/main/java/com/skiiyis/study/launcher/impl/MainThreadTaskTrigger.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher/src/test/java/com/skiiyis/study/launcher/ExampleUnitTest.kt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/admin/.android/avd/Pixel_3a_API_30_x86.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[RFCMA013JVN]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -55,12 +62,80 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$/launcher-plugin">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/launcher-annotation">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/launcher">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="StudyLauncher" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="StudyLauncher" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="StudyLauncher" type="f1a62948:ProjectNode" />
+                <item name="launcher" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="StudyLauncher" type="f1a62948:ProjectNode" />
+                <item name="launcher" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="StudyLauncher" type="f1a62948:ProjectNode" />
+                <item name="launcher" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="publishing" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="StudyLauncher" type="f1a62948:ProjectNode" />
+                <item name="launcher-annotation" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="StudyLauncher" type="f1a62948:ProjectNode" />
+                <item name="launcher-annotation" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="StudyLauncher" type="f1a62948:ProjectNode" />
+                <item name="launcher-annotation" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="publishing" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="StudyLauncher" type="f1a62948:ProjectNode" />
+                <item name="launcher-plugin" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="StudyLauncher" type="f1a62948:ProjectNode" />
+                <item name="launcher-plugin" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="StudyLauncher" type="f1a62948:ProjectNode" />
+                <item name="launcher-plugin" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="publishing" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -72,8 +147,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Kotlin File" />
+        <option value="Kotlin Interface" />
+        <option value="Class" />
         <option value="Kotlin Class" />
       </list>
     </option>
@@ -102,17 +178,22 @@
     <property name="DEBUGGER_ID" value="Auto" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/plugin/codegen" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="android.template.768394550">
       <recent name="com.skiiyis.studylauncher" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/launcher-plugin" />
+      <recent name="$PROJECT_DIR$/app" />
       <recent name="$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/plugin/codegen" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.skiiyis.study.launcher.util" />
       <recent name="com.skiiyis.study.launcher.plugin.collect" />
       <recent name="com.skiiyis.study.launcher" />
       <recent name="com.skiiyis.study.launcher.annotation" />
@@ -124,7 +205,7 @@
       <recent name="com.skiiyis.studylauncher" />
     </key>
   </component>
-  <component name="RunManager" selected="Android App.launcher-annotation">
+  <component name="RunManager" selected="Remote JVM Debug.Debug">
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="StudyLauncher.app" />
       <option name="DEPLOY" value="true" />
@@ -144,7 +225,7 @@
       <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
       <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
       <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="DEBUGGER_TYPE" value="Auto" />
+      <option name="DEBUGGER_TYPE" value="Java" />
       <Auto>
         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
         <option name="SHOW_STATIC_VARS" value="true" />
@@ -202,7 +283,7 @@
       <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
       <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
       <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="DEBUGGER_TYPE" value="Auto" />
+      <option name="DEBUGGER_TYPE" value="Java" />
       <Auto>
         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
         <option name="SHOW_STATIC_VARS" value="true" />
@@ -260,7 +341,7 @@
       <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
       <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
       <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="DEBUGGER_TYPE" value="Auto" />
+      <option name="DEBUGGER_TYPE" value="Java" />
       <Auto>
         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
         <option name="SHOW_STATIC_VARS" value="true" />
@@ -299,6 +380,128 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Tes" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.skiiyis.studylauncher.Tes" />
+      <module name="StudyLauncher.app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.skiiyis.studylauncher.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="2021-12-05:launcher [publishToMavenLocal]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/launcher" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="publishToMavenLocal" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="2021-12-05:launcher-annotation [publishMavenPublicationToMavenLocal]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/launcher-annotation" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="publishMavenPublicationToMavenLocal" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="2021-12-05:launcher-plugin [publishMavenPublicationToMavenLocal]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/launcher-plugin" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="publishMavenPublicationToMavenLocal" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ASMUtil" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <module name="StudyLauncher.launcher-plugin" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" value="com.skiiyis.study.launcher.plugin.util.ASMUtil" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Debug" type="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <option name="AUTO_RESTART" value="false" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="5005" />
+        <option name="LOCAL" value="false" />
+      </RunnerSettings>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Android App.app" />
+      <item itemvalue="Android App.launcher-annotation" />
+      <item itemvalue="Android App.launcher-plugin" />
+      <item itemvalue="Application.Tes" />
+      <item itemvalue="Gradle.2021-12-05:launcher [publishToMavenLocal]" />
+      <item itemvalue="Remote JVM Debug.Debug" />
+      <item itemvalue="Application.ASMUtil" />
+      <item itemvalue="Gradle.2021-12-05:launcher-annotation [publishMavenPublicationToMavenLocal]" />
+      <item itemvalue="Gradle.2021-12-05:launcher-plugin [publishMavenPublicationToMavenLocal]" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.2021-12-05:launcher-plugin [publishMavenPublicationToMavenLocal]" />
+        <item itemvalue="Gradle.2021-12-05:launcher-annotation [publishMavenPublicationToMavenLocal]" />
+        <item itemvalue="Application.ASMUtil" />
+        <item itemvalue="Application.Tes" />
+        <item itemvalue="Gradle.2021-12-05:launcher [publishToMavenLocal]" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -349,12 +552,50 @@
           </properties>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/plugin/annotationprocessor/LaunchTaskTriggerAnnotationProcessor.kt</url>
+          <line>47</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/plugin/annotationprocessor/LaunchTransactionAnnotationProcessor.kt</url>
+          <line>43</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/plugin/annotationprocessor/LaunchTaskAnnotationProcessor.kt</url>
+          <line>70</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/plugin/codegen/LauncherInitCodeGenWeaver.kt</url>
+          <line>25</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/launcher-plugin/src/main/java/com/skiiyis/study/launcher/plugin/codegen/LauncherInitCodeGenWeaver.kt</url>
+          <line>20</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="com.skiiyis.study.launcher.plugin.annotationprocessor.LaunchTransactionAnnotationProcessor$LaunchTransactionMetaData" memberName="name" />
+        <PinnedItemInfo parentTag="com.skiiyis.study.launcher.plugin.annotationprocessor.LaunchTransactionAnnotationProcessor$LaunchTransactionMetaData" memberName="className" />
+      </pinned-members>
+    </pin-to-top-manager>
     <watches-manager>
       <configuration name="Remote">
-        <watch expression="taskWithStatus.filter { it.value == STATUS_WAIT }.keys.sortedBy { it.order() }" language="kotlin" />
-        <watch expression="taskWithStatus" />
+        <watch expression="Type.getInternalName(LauncherInitPlugin::class.java)" language="kotlin" custom="import org.objectweb.asm.Type,import com.skiiyis.study.launcher.annotation.LauncherInitPlugin" />
+        <watch expression="cn.methods" language="kotlin" />
+        <watch expression="LauncherInitPlugin::init.name" language="kotlin" />
+      </configuration>
+      <configuration name="Application">
+        <watch expression="p::class.java" language="kotlin" />
       </configuration>
     </watches-manager>
   </component>

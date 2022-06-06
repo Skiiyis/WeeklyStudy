@@ -1,3 +1,18 @@
 plugins {
     id 'kotlin'
+    id 'maven-publish'
+}
+
+
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId "com.skiiyis.study.launcher.plugin"
+            artifactId "launcher-annotation"
+            version "0.1.0-SNAPSHOT"
+
+            from components.java
+        }
+    }
 }

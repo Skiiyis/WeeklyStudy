@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'launcher-plugin'
 }
 
 android {
@@ -35,7 +36,6 @@ android {
 
 dependencies {
     implementation project(':launcher')
-    implementation project(':launcher-plugin')
     implementation project(':launcher-annotation')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

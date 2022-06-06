@@ -23,7 +23,7 @@ abstract class LaunchTask : Runnable {
     class Builder(val runnable: Runnable) {
         private var name: String? = null
         private var taskType: String? = null
-        private var process: List<String>? = null
+        private var process = mutableListOf<String>()
         private var transactionName: String? = null
         private var order: Int = Int.MIN_VALUE
         private val dependOnTasks = mutableListOf<LaunchTask>()
@@ -38,8 +38,8 @@ abstract class LaunchTask : Runnable {
             return this
         }
 
-        fun targetProcess(process: List<String>): Builder {
-            this.process = process
+        fun targetProcess(process: String): Builder {
+            this.process.add(process)
             return this
         }
 
@@ -61,7 +61,7 @@ abstract class LaunchTask : Runnable {
         fun build(): LaunchTask {
             checkNotNull(name)
             checkNotNull(taskType)
-            checkNotNull(process)
+            if (process.isEmpty()) throw IllegalArgumentException("Target process must not be empty")
             checkNotNull(transactionName)
             val ret = object : LaunchTask() {
                 override fun name(): String {
@@ -73,7 +73,7 @@ abstract class LaunchTask : Runnable {
                 }
 
                 override fun targetProcess(): List<String> {
-                    return process!!
+                    return process
                 }
 
                 override fun transactionName(): String {

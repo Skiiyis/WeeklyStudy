@@ -14,7 +14,7 @@ import java.io.InputStream
 class LauncherInitCodeGenWeaver : BaseWeaver() {
 
     override fun isWeavableClass(fullQualifiedClassName: String): Boolean {
-        return fullQualifiedClassName == Type.getInternalName(LauncherInitPlugin::class.java)
+        return fullQualifiedClassName == "${LauncherInitPlugin::class.java.name}.class"
     }
 
     override fun weaveSingleClassToByteArray(inputStream: InputStream?): ByteArray {
@@ -23,10 +23,10 @@ class LauncherInitCodeGenWeaver : BaseWeaver() {
         cr.accept(cn, 0)
 
         // ----
-        cn.methods.find { it.desc == "<init>()V" }?.also {
-            LaunchTaskTriggerAnnotationProcessor.generateCode()
-            LaunchTransactionAnnotationProcessor.generateCode()
-            LaunchTaskAnnotationProcessor.generateCode()
+        cn.methods.find { it.name == LauncherInitPlugin::init.name }?.also {
+            LaunchTaskTriggerAnnotationProcessor.generateCode(it.instructions)
+            LaunchTransactionAnnotationProcessor.generateCode(it.instructions)
+            LaunchTaskAnnotationProcessor.generateCode(it.instructions)
         }
         // ----
 
