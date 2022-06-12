@@ -17,7 +17,7 @@ object LaunchTaskAnnotationProcessor : AnnotationProcessor {
 
     private val taskMetaDatas = mutableMapOf<String, LaunchTaskMetaData>()
 
-    override fun collect(className: String, annotationValues: List<Any>) {
+    override fun collect(classInternalName: String, annotationValues: List<Any>) {
         taskMetaDatas.put(
             annotationValues[
                     FindAnnotationIndex.findValueIndex(
@@ -26,7 +26,7 @@ object LaunchTaskAnnotationProcessor : AnnotationProcessor {
                     )
             ].toString(),
             LaunchTaskMetaData(
-                className = className,
+                classInternalName = classInternalName,
                 transactionName = annotationValues[
                         FindAnnotationIndex.findValueIndex(
                             annotationValues,
@@ -70,12 +70,9 @@ object LaunchTaskAnnotationProcessor : AnnotationProcessor {
     override fun generateCode(instructions: InsnList) {
         val taskRet = checkAndMergeTasks(taskMetaDatas.values.toMutableSet())
         var depth = 0
-        while (taskRet.isNotEmpty()) {
+        while (taskRet.any { it.value >= depth }) {
             for (key in taskRet.keys) {
-                val d = taskRet.remove(key)!!
-                if (d != depth) {
-                    taskRet[key] = d
-                } else {
+                if (taskRet[key] == depth) {
                     generateAddTaskCode(key, instructions)
                 }
             }
@@ -88,32 +85,73 @@ object LaunchTaskAnnotationProcessor : AnnotationProcessor {
         newInstructions.addAll(
             listOf(
                 // Launcher.INSTANCE
-                FieldInsnNode(Opcodes.GETSTATIC, Launcher::class.qualifiedName, "INTANCE", Constants.launcherDesc),
+                FieldInsnNode(
+                    Opcodes.GETSTATIC,
+                    Launcher::class.qualifiedName,
+                    "INTANCE",
+                    Constants.launcherDesc
+                ),
 
                 // new LauncherTask.Builder(SampleRunnable())
                 TypeInsnNode(Opcodes.NEW, Constants.launchTaskBuilderDesc),
                 InsnNode(Opcodes.DUP),
-                TypeInsnNode(Opcodes.NEW, taskData.className),
+                TypeInsnNode(Opcodes.NEW, taskData.classInternalName),
                 InsnNode(Opcodes.DUP),
-                MethodInsnNode(Opcodes.INVOKESPECIAL, taskData.className, "<init>", "()V", false),
+                MethodInsnNode(
+                    Opcodes.INVOKESPECIAL,
+                    taskData.classInternalName,
+                    "<init>",
+                    "()V",
+                    false
+                ),
                 TypeInsnNode(Opcodes.CHECKCAST, "java/lang/Runnable"),
-                MethodInsnNode(Opcodes.INVOKESPECIAL, Constants.launchTaskBuilderDesc, "<init>", "(Ljava/lang/Runnable;)V", false),
+                MethodInsnNode(
+                    Opcodes.INVOKESPECIAL,
+                    Constants.launchTaskBuilderDesc,
+                    "<init>",
+                    "(Ljava/lang/Runnable;)V",
+                    false
+                ),
 
                 // LauncherTask.Builder.name()
                 LdcInsnNode(taskData.name),
-                MethodInsnNode(Opcodes.INVOKEVIRTUAL, Constants.launchTaskBuilderDesc, "name", Constants.launchTaskNameDepenOnMethodDesc, false),
+                MethodInsnNode(
+                    Opcodes.INVOKEVIRTUAL,
+                    Constants.launchTaskBuilderDesc,
+                    "name",
+                    Constants.launchTaskNameDependOnMethodDesc,
+                    false
+                ),
 
                 // LauncherTask.Builder.taskType()
                 LdcInsnNode(taskData.taskType),
-                MethodInsnNode(Opcodes.INVOKEVIRTUAL, Constants.launchTaskBuilderDesc, "taskType", Constants.launchTaskTaskTypeDepenOnMethodDesc, false),
+                MethodInsnNode(
+                    Opcodes.INVOKEVIRTUAL,
+                    Constants.launchTaskBuilderDesc,
+                    "taskType",
+                    Constants.launchTaskTaskTypeDependOnMethodDesc,
+                    false
+                ),
 
                 // LauncherTask.Builder.transactionName()
                 LdcInsnNode(taskData.transactionName),
-                MethodInsnNode(Opcodes.INVOKEVIRTUAL, Constants.launchTaskBuilderDesc, "transactionName", Constants.launchTaskTransactionNameMethodDesc, false),
+                MethodInsnNode(
+                    Opcodes.INVOKEVIRTUAL,
+                    Constants.launchTaskBuilderDesc,
+                    "transactionName",
+                    Constants.launchTaskTransactionNameMethodDesc,
+                    false
+                ),
 
                 // LauncherTask.Builder.order()
                 LdcInsnNode(taskData.order),
-                MethodInsnNode(Opcodes.INVOKEVIRTUAL, Constants.launchTaskBuilderDesc, "order", Constants.launchTaskOrderMethodDesc, false),
+                MethodInsnNode(
+                    Opcodes.INVOKEVIRTUAL,
+                    Constants.launchTaskBuilderDesc,
+                    "order",
+                    Constants.launchTaskOrderMethodDesc,
+                    false
+                ),
             )
         )
 
@@ -121,10 +159,27 @@ object LaunchTaskAnnotationProcessor : AnnotationProcessor {
         taskData.dependOn.forEach {
             newInstructions.addAll(
                 listOf(
-                    FieldInsnNode(Opcodes.GETSTATIC, Launcher::class.qualifiedName, "INTANCE", Constants.launcherDesc),
+                    FieldInsnNode(
+                        Opcodes.GETSTATIC,
+                        Launcher::class.qualifiedName,
+                        "INTANCE",
+                        Constants.launcherDesc
+                    ),
                     LdcInsnNode(it),
-                    MethodInsnNode(Opcodes.INVOKEVIRTUAL, Constants.launcherDesc, "requireTask", Constants.launcherRequireTaskMethodDesc, false),
-                    MethodInsnNode(Opcodes.INVOKEVIRTUAL, Constants.launchTaskBuilderDesc, "dependOn", Constants.launchTaskBuilderDepenOnMethodDesc, false)
+                    MethodInsnNode(
+                        Opcodes.INVOKEVIRTUAL,
+                        Constants.launcherDesc,
+                        "requireTask",
+                        Constants.launcherRequireTaskMethodDesc,
+                        false
+                    ),
+                    MethodInsnNode(
+                        Opcodes.INVOKEVIRTUAL,
+                        Constants.launchTaskBuilderDesc,
+                        "dependOn",
+                        Constants.launchTaskBuilderDependOnMethodDesc,
+                        false
+                    )
                 )
             )
         }
@@ -134,18 +189,36 @@ object LaunchTaskAnnotationProcessor : AnnotationProcessor {
             newInstructions.addAll(
                 listOf(
                     LdcInsnNode(it),
-                    MethodInsnNode(Opcodes.INVOKEVIRTUAL, Constants.launchTaskBuilderDesc, "targetProcess", Constants.launchTaskTragetProcessMethodDesc, false),
-                    )
+                    MethodInsnNode(
+                        Opcodes.INVOKEVIRTUAL,
+                        Constants.launchTaskBuilderDesc,
+                        "targetProcess",
+                        Constants.launchTaskTargetProcessMethodDesc,
+                        false
+                    ),
+                )
             )
         }
 
         newInstructions.addAll(
             listOf(
                 // LauncherTask.Builder.build()
-                MethodInsnNode(Opcodes.INVOKEVIRTUAL, Constants.launchTaskBuilderDesc, "build", Constants.launchTaskBuilderBuildMethodDesc, false),
+                MethodInsnNode(
+                    Opcodes.INVOKEVIRTUAL,
+                    Constants.launchTaskBuilderDesc,
+                    "build",
+                    Constants.launchTaskBuilderBuildMethodDesc,
+                    false
+                ),
 
                 // Launcher.addTask()
-                MethodInsnNode(Opcodes.INVOKEVIRTUAL, Constants.launcherDesc, "addTask", Constants.launcherAddTaskMethodDesc, false)
+                MethodInsnNode(
+                    Opcodes.INVOKEVIRTUAL,
+                    Constants.launcherDesc,
+                    "addTask",
+                    Constants.launcherAddTaskMethodDesc,
+                    false
+                )
             )
         )
 
@@ -166,7 +239,10 @@ object LaunchTaskAnnotationProcessor : AnnotationProcessor {
         while (ret.size != totalTasks.size) {
             totalTasks.subtract(ret.keys).forEach {
                 if (ret[it] == null) {
-                    val dependOnTasks = it.dependOn.map { taskMetaDatas[it] ?: throw IllegalArgumentException("Could not found target task!") }
+                    val dependOnTasks = it.dependOn.map {
+                        taskMetaDatas[it]
+                            ?: throw IllegalArgumentException("Could not found target task!")
+                    }
                     if (dependOnTasks.isNullOrEmpty()) {
                         ret[it] = 0
                     } else if (ret.keys.containsAll(dependOnTasks)) {
@@ -185,7 +261,9 @@ object LaunchTaskAnnotationProcessor : AnnotationProcessor {
     ) {
         if (pathTask.contains(task)) throw IllegalArgumentException("Find ring in task dependencies!")
         totalTasks.add(task)
-        task.dependOn.map { taskMetaDatas[it] ?: throw IllegalArgumentException("Could not found target task!") }.forEach {
+        task.dependOn.map {
+            taskMetaDatas[it] ?: throw IllegalArgumentException("Could not found target task!")
+        }.forEach {
             pathTask.add(task)
             check(it, pathTask, totalTasks)
             pathTask.remove(task)
@@ -194,7 +272,7 @@ object LaunchTaskAnnotationProcessor : AnnotationProcessor {
 
 
     data class LaunchTaskMetaData(
-        val className: String,
+        val classInternalName: String,
 
         val transactionName: String,
         val name: String,

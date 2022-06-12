@@ -4,6 +4,6 @@ import org.objectweb.asm.tree.InsnList
 
 interface AnnotationProcessor {
 
-    fun collect(className: String, annotationValues: List<Any>)
+    fun collect(classInternalName: String, annotationValues: List<Any>)
     fun generateCode(instructions: InsnList)
 }
