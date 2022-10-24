@@ -54,9 +54,8 @@ object LaunchTaskTriggerAnnotationProcessor : AnnotationProcessor {
                 TypeInsnNode(Opcodes.CHECKCAST, iLauncherTaskTriggerInternalName),
                 MethodInsnNode(Opcodes.INVOKEVIRTUAL, launcherInternalName, Launcher::registerTaskTrigger.name, launcherRegisterTaskTriggerMethodDesc, false)
             )
-            newInstructions.reversed()
-            newInstructions.forEach {
-                instructions.add(it)
+            newInstructions.reversed().forEach {
+                instructions.insert(it)
             }
         }
     }

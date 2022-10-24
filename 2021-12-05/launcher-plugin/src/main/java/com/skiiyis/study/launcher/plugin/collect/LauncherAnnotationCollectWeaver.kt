@@ -22,7 +22,8 @@ class LauncherAnnotationCollectWeaver : BaseWeaver() {
     }
 
     override fun weaveSingleClassToByteArray(inputStream: InputStream?): ByteArray {
-        val cr = ClassReader(inputStream)
+        val ret = super.weaveSingleClassToByteArray(inputStream)
+        val cr = ClassReader(ret)
         val cn = ClassNode()
         cr.accept(cn, 0)
 
@@ -41,9 +42,6 @@ class LauncherAnnotationCollectWeaver : BaseWeaver() {
             }
         }
         // ----
-
-        val cw = ClassWriter(0)
-        cn.accept(cw)
-        return cw.toByteArray()
+        return ret
     }
 }

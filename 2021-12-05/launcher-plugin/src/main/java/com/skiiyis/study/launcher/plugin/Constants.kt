@@ -13,6 +13,7 @@ object Constants {
     // com/skiiyis/study/launcher/Launcher
     val launcherInternalName = Type.getInternalName(Launcher::class.java)
 
+    val launchTaskBuilderInternalName = Type.getInternalName(LaunchTask.Builder::class.java)
     val launchTaskBuilderDesc = Type.getDescriptor(LaunchTask.Builder::class.java)
 
 
@@ -20,7 +21,7 @@ object Constants {
         getMethodDescriptor(LaunchTask.Builder::class.java, LaunchTask.Builder::build.name)
     val launchTaskBuilderDependOnMethodDesc =
         getMethodDescriptor(LaunchTask.Builder::class.java, LaunchTask.Builder::dependOn.name)
-    val launchTaskTaskTypeDependOnMethodDesc =
+    val launchTaskTaskTypeMethodDesc =
         getMethodDescriptor(LaunchTask.Builder::class.java, LaunchTask.Builder::taskType.name)
     val launchTaskTransactionNameMethodDesc =
         getMethodDescriptor(LaunchTask.Builder::class.java, LaunchTask.Builder::transactionName.name)

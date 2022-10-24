@@ -1,0 +1,68 @@
+  public void onCreate();
+    Code:
+       0: aload_0
+       1: invokespecial #27                 // Method android/app/Application.onCreate:()V
+       4: getstatic     #33                 // Field com/skiiyis/study/launcher/Launcher.INSTANCE:Lcom/skiiyis/study/launcher/Launcher;
+       7: ldc           #35                 // String cold
+       9: ldc           #37                 // class com/skiiyis/studylauncher/ColdLaunchTransaction
+      11: invokevirtual #41                 // Method com/skiiyis/study/launcher/Launcher.registerLaunchTransactionGenerator:(Ljava/lang/String;Ljava/lang/Class;)V
+      14: getstatic     #33                 // Field com/skiiyis/study/launcher/Launcher.INSTANCE:Lcom/skiiyis/study/launcher/Launcher;
+      17: ldc           #43                 // String background
+      19: new           #45                 // class com/skiiyis/studylauncher/ColdLaunchBackgroundTaskTrigger
+      22: dup
+      23: invokespecial #46                 // Method com/skiiyis/studylauncher/ColdLaunchBackgroundTaskTrigger."<init>":()V
+      26: checkcast     #48                 // class com/skiiyis/study/launcher/ILaunchTaskTrigger
+      29: invokevirtual #52                 // Method com/skiiyis/study/launcher/Launcher.registerTaskTrigger:(Ljava/lang/String;Lcom/skiiyis/study/launcher/ILaunchTaskTrigger;)V
+      32: getstatic     #33                 // Field com/skiiyis/study/launcher/Launcher.INSTANCE:Lcom/skiiyis/study/launcher/Launcher;
+      35: new           #54                 // class com/skiiyis/study/launcher/LaunchTask$Builder
+      38: dup
+      39: new           #56                 // class com/skiiyis/studylauncher/SecondLaunchTask
+      42: dup
+      43: invokespecial #57                 // Method com/skiiyis/studylauncher/SecondLaunchTask."<init>":()V
+      46: checkcast     #59                 // class java/lang/Runnable
+      49: invokespecial #62                 // Method com/skiiyis/study/launcher/LaunchTask$Builder."<init>":(Ljava/lang/Runnable;)V
+      52: ldc           #64                 // String second
+      54: invokevirtual #68                 // Method com/skiiyis/study/launcher/LaunchTask$Builder.name:(Ljava/lang/String;)Lcom/skiiyis/study/launcher/LaunchTask$Builder;
+      57: iconst_1
+      58: invokevirtual #72                 // Method com/skiiyis/study/launcher/LaunchTask$Builder.order:(I)Lcom/skiiyis/study/launcher/LaunchTask$Builder;
+      61: ldc           #43                 // String background
+      63: invokevirtual #75                 // Method com/skiiyis/study/launcher/LaunchTask$Builder.taskType:(Ljava/lang/String;)Lcom/skiiyis/study/launcher/LaunchTask$Builder;
+      66: ldc           #77                 // String main
+      68: invokevirtual #80                 // Method com/skiiyis/study/launcher/LaunchTask$Builder.targetProcess:(Ljava/lang/String;)Lcom/skiiyis/study/launcher/LaunchTask$Builder;
+      71: ldc           #35                 // String cold
+      73: invokevirtual #83                 // Method com/skiiyis/study/launcher/LaunchTask$Builder.transactionName:(Ljava/lang/String;)Lcom/skiiyis/study/launcher/LaunchTask$Builder;
+      76: invokevirtual #87                 // Method com/skiiyis/study/launcher/LaunchTask$Builder.build:()Lcom/skiiyis/study/launcher/LaunchTask;
+      79: invokevirtual #91                 // Method com/skiiyis/study/launcher/Launcher.addTask:(Lcom/skiiyis/study/launcher/LaunchTask;)V
+      82: getstatic     #33                 // Field com/skiiyis/study/launcher/Launcher.INSTANCE:Lcom/skiiyis/study/launcher/Launcher;
+      85: new           #54                 // class com/skiiyis/study/launcher/LaunchTask$Builder
+      88: dup
+      89: new           #93                 // class com/skiiyis/studylauncher/ThirdLaunchTask
+      92: dup
+      93: invokespecial #94                 // Method com/skiiyis/studylauncher/ThirdLaunchTask."<init>":()V
+      96: checkcast     #59                 // class java/lang/Runnable
+      99: invokespecial #62                 // Method com/skiiyis/study/launcher/LaunchTask$Builder."<init>":(Ljava/lang/Runnable;)V
+     102: ldc           #96                 // String third
+     104: invokevirtual #68                 // Method com/skiiyis/study/launcher/LaunchTask$Builder.name:(Ljava/lang/String;)Lcom/skiiyis/study/launcher/LaunchTask$Builder;
+     107: iconst_1
+     108: invokevirtual #72                 // Method com/skiiyis/study/launcher/LaunchTask$Builder.order:(I)Lcom/skiiyis/study/launcher/LaunchTask$Builder;
+     111: ldc           #43                 // String background
+     113: invokevirtual #75                 // Method com/skiiyis/study/launcher/LaunchTask$Builder.taskType:(Ljava/lang/String;)Lcom/skiiyis/study/launcher/LaunchTask$Builder;
+     116: ldc           #77                 // String main
+     118: invokevirtual #80                 // Method com/skiiyis/study/launcher/LaunchTask$Builder.targetProcess:(Ljava/lang/String;)Lcom/skiiyis/study/launcher/LaunchTask$Builder;
+     121: ldc           #35                 // String cold
+     123: invokevirtual #83                 // Method com/skiiyis/study/launcher/LaunchTask$Builder.transactionName:(Ljava/lang/String;)Lcom/skiiyis/study/launcher/LaunchTask$Builder;
+     126: getstatic     #33                 // Field com/skiiyis/study/launcher/Launcher.INSTANCE:Lcom/skiiyis/study/launcher/Launcher;
+     129: ldc           #64                 // String second
+     131: invokevirtual #100                // Method com/skiiyis/study/launcher/Launcher.requireTask:(Ljava/lang/String;)Lcom/skiiyis/study/launcher/LaunchTask;
+     134: invokevirtual #104                // Method com/skiiyis/study/launcher/LaunchTask$Builder.dependOn:(Lcom/skiiyis/study/launcher/LaunchTask;)Lcom/skiiyis/study/launcher/LaunchTask$Builder;
+     137: invokevirtual #87                 // Method com/skiiyis/study/launcher/LaunchTask$Builder.build:()Lcom/skiiyis/study/launcher/LaunchTask;
+     140: invokevirtual #91                 // Method com/skiiyis/study/launcher/Launcher.addTask:(Lcom/skiiyis/study/launcher/LaunchTask;)V
+     143: getstatic     #33                 // Field com/skiiyis/study/launcher/Launcher.INSTANCE:Lcom/skiiyis/study/launcher/Launcher;
+     146: ldc           #35                 // String cold
+     148: invokevirtual #108                // Method com/skiiyis/study/launcher/Launcher.beginTransaction:(Ljava/lang/String;)Lcom/skiiyis/study/launcher/ILaunchTransaction;
+     151: astore_1
+     152: aload_1
+     153: ifnonnull     159
+     156: goto          165
+     159: aload_1
+     160: invokeinterface #113,  1          // InterfaceMethod com/skiiyis/study/launcher/ILaunchTransaction.commit:()V

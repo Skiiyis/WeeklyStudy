@@ -7,6 +7,7 @@ import com.skiiyis.study.launcher.plugin.Constants.launcherInternalName
 import com.skiiyis.study.launcher.plugin.Constants.launcherRegisterLaunchTransactionGeneratorMethodDesc
 import com.skiiyis.study.launcher.plugin.FindAnnotationIndex
 import org.objectweb.asm.Opcodes
+import org.objectweb.asm.Type
 import org.objectweb.asm.tree.FieldInsnNode
 import org.objectweb.asm.tree.InsnList
 import org.objectweb.asm.tree.LdcInsnNode
@@ -42,12 +43,11 @@ object LaunchTransactionAnnotationProcessor : AnnotationProcessor {
             val newInstructions = listOf(
                 FieldInsnNode(Opcodes.GETSTATIC, launcherInternalName, "INSTANCE", launcherDesc),
                 LdcInsnNode(it.name),
-                LdcInsnNode("L${it.classInternalName};.class"),
-                MethodInsnNode(Opcodes.INVOKEVIRTUAL, launcherInternalName, Launcher::registerLaunchTransactionGenerator.name, launcherRegisterLaunchTransactionGeneratorMethodDesc, false)
+                LdcInsnNode(Type.getObjectType(it.classInternalName)),
+                MethodInsnNode(Opcodes.INVOKEVIRTUAL, launcherInternalName, Launcher::registerLaunchTransactionGenerator.name,  launcherRegisterLaunchTransactionGeneratorMethodDesc, false)
             )
-            newInstructions.reversed()
-            newInstructions.forEach {
-                instructions.add(it)
+            newInstructions.reversed().forEach {
+                instructions.insert(it)
             }
         }
     }
