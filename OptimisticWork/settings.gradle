@@ -1,0 +1,3 @@
+rootProject.name = "OptimisticWork"
+include ':app'
+include ':optimistic'
